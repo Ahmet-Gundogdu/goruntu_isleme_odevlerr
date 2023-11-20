@@ -65,15 +65,10 @@ def main():
         lower_color = np.array([lower_colors_sett['a1'],lower_colors_sett['a2'],lower_colors_sett['a3']])
         upper_color = np.array([upper_colors_sett['b1'],upper_colors_sett['b2'],upper_colors_sett['b3']])
         mask = cv2.inRange(hsv, lower_color, upper_color)
-        #hsv bgr'ye çevirme
-        bgrMask= cv2.cvtColor(mask, cv2.COLOR_HSV2BGR)
-        
-        res = cv2.bitwise_and(frame, frame, mask = bgrMask)
+        res = cv2.bitwise_and(frame, frame, mask = mask)
         
         #pencereleri gösterme
-        
-        # bgrRes= cv2.cvtColor(res, cv2.COLOR_HSV2BGR)
-        cv2.imshow('mask',bgrMask)
+        cv2.imshow('mask',mask)
         cv2.imshow('res',res)
         #Foto üstüne yazı ekleme
         cv2.putText(frame, 'Cikmak icin "ESC", Ayarlari ve ekran goruntusunu kaydedip cikmak icin "S" tusuna basin.', (0,20), 3,  0.4, (255, 255, 255))
